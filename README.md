@@ -3,11 +3,6 @@ A React Native library for Fabric, Crashlytics and Answers
 
 [![NPM](https://nodei.co/npm/react-native-fabric.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-native-fabric/)
 
-
-## Versioning
-- For React Native > 0.40 use version 0.5.1
-- For React Native < 0.40 use version 0.3.2
-
 For Twitter Kit support, see [react-native-fabric-twitterkit](https://github.com/tkporter/react-native-fabric-twitterkit)
 
 ## Installation
@@ -18,44 +13,27 @@ For Twitter Kit support, see [react-native-fabric-twitterkit](https://github.com
 
 ### 2. Add react-native-fabric
 
-#### Automatically
+#### With [rnpm](https://github.com/rnpm/rnpm)
 
-`react-native install react-native-fabric`, or with [rnpm](https://github.com/rnpm/rnpm): `rnpm install react-native-fabric`
+`rnpm install react-native-fabric`
 
-React Native / rnpm will automatically link all the necessary libraries for both iOS and Android.
+rnpm will automatically link all the necessary libraries for both iOS and Android.
 
-If the installation goes off without a hitch, you can now skip to the **[Crashlytics Usage section](#crashlytics-usage)** or the **[Answers Usage section](#answers-usage)**.
+If the rnpm installation goes off without a hitch, you can now skip to the **[Crashlytics Usage section](#crashlytics-usage)** or the **[Answers Usage section](#answers-usage)**.
 
-#### Manually
+#### Without [rnpm](https://github.com/rnpm/rnpm)
 
 `npm install react-native-fabric --save`
 
 - Alternatively for Android, if you **don't** use Android studio you can skip the first step and instead follow the steps described in [`Android`](#android) **as well as** the steps in [`Android without Android Studio`](#no_android_studio).
 
-##### Manually iOS With CocoaPods support
+#### Manually iOS With CocoaPods support
 
 - add the following line to Podfile
 
 `pod 'ReactNativeFabric', :path => '../node_modules/react-native-fabric'`
 
-##### Manually iOS Without CocoaPods support
-
-Download the [Crashlytics
-SDK](https://fabric.io/kits/ios/crashlytics/manual-install) and place the two
-frameworks in a directory called `Crashlytics` in the `ios` directory. You may
-want to add this directory to your `.gitignore` as they take up a decent amount
-of space and will slow down Git.
-
-You will also need to modify the Run Script Phase that you likely added to Build
-Phases so that it points to the correct location for the Fabric framework. If
-you placed the framework directly under `ios/Crashlytics` as specified above,t
-the contents of the script will then be:
-
-```
-"${SRCROOT}/Crashlytics/Fabric.framework/run" API_KEY API_SECRET
-```
-
-Then do the following:
+#### Manually iOS Without CocoaPods support
 
 - Open your project in Xcode
 - Run ```open node_modules/react-native-fabric/ios```
@@ -67,7 +45,7 @@ Then do the following:
 - ⌘+B
 
 <a name="android"></a>
-##### Android
+#### Android
 
 *Note: Android support requires React Native 0.16 or later 
 
@@ -137,7 +115,7 @@ Then do the following:
   ```  
 
 <a name="no_android_studio"></a>
-##### Android without Android Studio
+#### Android without Android Studio
 
 Make sure you also follow the steps described in [`Android`](#android).
 
@@ -230,7 +208,7 @@ Make sure you also follow the steps described in [`Android`](#android).
 
 ## Crashlytics Usage
 
-**Note: logging will not be registered on Android to the Fabric dashboard until the app is bundled for release.**
+* Note: logging will not be registered on Android to the Fabric dashboard until the app is bundled for release.
 
 To see all available methods take a look at [Crashlytics.js](https://github.com/corymsmith/react-native-fabric/blob/master/Crashlytics.js)
 
@@ -271,10 +249,10 @@ var Fabric = require('react-native-fabric');
 
 var { Answers } = Fabric;
 
-// All log functions take an optional object of custom attributes as the last parameter
+// All log functions take an optional array of custom attributes as the last parameter
 Answers.logCustom('Performed a custom event', { bigData: true });
 
-Answers.logContentView('To-Do Edit', 'To-Do', 'to-do-42', { userId: 93 });
+Answers.logContentView('To-Do Edit', 'To-Do', 'to-do-42', { user-id: 93 });
 
 Answers.logAddToCart(24.50, 'USD', 'Air Jordans', 'shoes', '987654', {color: 'red'});
 
